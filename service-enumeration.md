@@ -14,6 +14,16 @@ hydra -L usernames.txt -P passwords.txt <IP> ftp
 
 ***
 
+## Telnet - 23
+
+{% embed url="https://book.hacktricks.xyz/network-services-pentesting/pentesting-telnet" %}
+
+```bash
+telnet <IP> <PORT>
+```
+
+***
+
 ## NetBios - 137, 138, 139
 
 {% embed url="https://book.hacktricks.xyz/network-services-pentesting/137-138-139-pentesting-netbios" %}
@@ -59,7 +69,11 @@ nmap -sU -p 137 --script nbtstat.nse 192.168.18.110
 
 ## SMB - 139, 445
 
+Server Message Block
+
 {% embed url="https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb" %}
+
+{% embed url="https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html" %}
 
 ### Methodology
 
@@ -79,6 +93,17 @@ Look out for
 | 138  | UDP      | NetBIOS Datagram Service (NDS) by SMB             |
 | 139  | TCP      | SMB in conjunction with NetBIOS over TCP/IP (NBT) |
 | 445  | TCP      | Primary Port                                      |
+
+### Services Examples
+
+* netbios-ssn
+* microsoft-ds
+
+### Using enum4linux
+
+```bash
+enum4linux -a 10.10.10.10
+```
 
 ### Using nmap
 
@@ -149,6 +174,16 @@ nmap -sU -p 445 --script=smb-enum-services --script-args smbusername=administrat
 ```bash
 nmap -sC -sV -A -T4 -p 445 <target> 
 ```
+
+### Exploitation
+
+{% embed url="https://github.com/irgoncalves/smbclient_cheatsheet" %}
+
+#### Using smbclient
+
+* `smbclient -L` - List shares on a machine using NULL Session
+* `smbclient -L <target_IP> -U username%password` - List shares on a machine using a valid username + password
+* `smbclient //<target>/<share$> -U username%password` - Connect to a valid share with username + password
 
 ***
 
