@@ -177,7 +177,7 @@ nmap -sC -sV -A -T4 -p 445 <target>
 
 ### Exploitation
 
-{% embed url="https://github.com/irgoncalves/smbclient_cheatsheet" %}
+{% @github-files/github-code-block %}
 
 #### Using smbclient
 

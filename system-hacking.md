@@ -1,6 +1,6 @@
 # System Hacking
 
-{% embed url="https://github.com/Samsar4/Ethical-Hacking-Labs/tree/master/5-System-Hacking" %}
+{% @github-files/github-code-block %}
 
 ## Metasploit
 
